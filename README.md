@@ -27,12 +27,10 @@ A key design principle is **mission-driven stopping**: the T40 lands when its as
 .
 ├── data/
 │   ├── raw/
-│   │   ├── flight_telemetry/
-│   │   │   ├── MKAVI1_T40_RPU028B_2024_AUTOMODE_ALL.csv    # DJI Smart Farm export — AUTO mode (7,051 records)
-│   │   │   └── MKAVI1_T40_RPU028B_2024_MANUALMODE_ALL.csv  # DJI Smart Farm export — MANUAL mode (1,624 records)
-│   │   └── era5_weather/
-│   │       ├── LANTAPAN_WEATHER_DATA.csv   # ERA5 hourly data — Lantapan grid point (7.979°N, 125.047°E, 622 m)
-│   │       └── VALENCIA_WEATHER_DATA.csv   # ERA5 hourly data — Valencia grid point  (7.838°N, 125.141°E, 313 m)
+│   │     ├── MKAVI1_T40_RPU028B_2024_AUTOMODE_ALL.csv    # DJI Smart Farm export — AUTO mode (7,051 records)
+│   │     └── MKAVI1_T40_RPU028B_2024_MANUALMODE_ALL.csv  # DJI Smart Farm export — MANUAL mode (1,624 records)
+│   │     ├── LANTAPAN_WEATHER_DATA.csv   # ERA5 hourly data — Lantapan grid point (7.979°N, 125.047°E, 622 m)
+│   │     └── VALENCIA_WEATHER_DATA.csv   # ERA5 hourly data — Valencia grid point  (7.838°N, 125.141°E, 313 m)
 │   └── processed/
 │       ├── final_dataset_auto.csv          # Cleaned AUTO dataset (6,446 flights, 12 features + metadata)
 │       ├── final_dataset_manual.csv        # Cleaned MANUAL dataset (1,090 flights)
