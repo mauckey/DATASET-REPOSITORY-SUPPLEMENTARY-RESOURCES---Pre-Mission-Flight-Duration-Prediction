@@ -1,0 +1,14 @@
+[
+  "starting_battery",
+  "sprayed_area",
+  "total_amount_l",
+  "hour_sin",
+  "hour_cos",
+  "month_sin",
+  "month_cos",
+  "flight_index_within_day",
+  "rolling_duration_3",
+  "temperature_2m",
+  "wind_speed_10m",
+  "precipitation"
+]
