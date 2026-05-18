@@ -27,45 +27,49 @@ A key design principle is **mission-driven stopping**: the T40 lands when its as
 .
 ├── data/
 │   ├── raw/
-│   │   ├── auto_flights_raw.csv          # Raw DJI Smart Farm CSV export — AUTO mode
-│   │   └── manual_flights_raw.csv        # Raw DJI Smart Farm CSV export — MANUAL mode
+│   │   ├── flight_telemetry/
+│   │   │   ├── MKAVI1_T40_RPU028B_2024_AUTOMODE_ALL.csv    # DJI Smart Farm export — AUTO mode (7,051 records)
+│   │   │   └── MKAVI1_T40_RPU028B_2024_MANUALMODE_ALL.csv  # DJI Smart Farm export — MANUAL mode (1,624 records)
+│   │   └── era5_weather/
+│   │       ├── LANTAPAN_WEATHER_DATA.csv   # ERA5 hourly data — Lantapan grid point (7.979°N, 125.047°E, 622 m)
+│   │       └── VALENCIA_WEATHER_DATA.csv   # ERA5 hourly data — Valencia grid point  (7.838°N, 125.141°E, 313 m)
 │   └── processed/
-│       ├── final_dataset_auto.csv        # Cleaned AUTO dataset (6,446 flights, 12 features)
-│       ├── final_dataset_manual.csv      # Cleaned MANUAL dataset (1,090 flights)
-│       └── filtering_audit.csv           # Three-step data cleaning audit log
+│       ├── final_dataset_auto.csv          # Cleaned AUTO dataset (6,446 flights, 12 features + metadata)
+│       ├── final_dataset_manual.csv        # Cleaned MANUAL dataset (1,090 flights)
+│       └── filtering_audit.csv             # Three-step data cleaning audit log
 │
 ├── outputs_v9/
-│   ├── baseline_results.csv             # Sequential model performance — GRU, LSTM, Seq-RF
-│   ├── computational_efficiency.csv     # Training time, inference latency, memory footprint
-│   ├── repetition_results.csv           # Stability across 5 random seeds
-│   ├── ground_truth_and_predictions.csv # y_true + all model predictions (578 sequences)
-│   ├── ablation_results.csv             # Environmental δMAE by season × feature
-│   ├── ablation_baseline_control.csv    # Ablation baseline (fixed hyperparameters)
+│   ├── baseline_results.csv               # Sequential model performance — GRU, LSTM, Seq-RF
+│   ├── computational_efficiency.csv        # Training time, inference latency, memory footprint
+│   ├── repetition_results.csv             # Stability across 5 random seeds
+│   ├── ground_truth_and_predictions.csv   # y_true + all model predictions (578 sequences)
+│   ├── ablation_results.csv               # Environmental δMAE by season × feature
+│   ├── ablation_baseline_control.csv      # Ablation baseline (fixed hyperparameters)
 │   ├── sequential_permutation_importance.csv  # Permutation importance rankings
-│   ├── flat_vs_seq_rf_comparison.csv    # Flat RF vs Seq-RF comparison
-│   ├── manual_baseline_results.csv      # MANUAL mode flat RF baseline
-│   ├── prediction_comparison_models.csv # All models on same 578 test sequences
-│   ├── threshold_comparison.csv         # 1 min vs 2 min exclusion threshold experiment
-│   ├── weather_alignment_audit.csv      # ERA5 merge quality report
-│   ├── session_length_bias_auto.csv     # Session-length distribution audit (AUTO)
-│   ├── session_length_bias_manual.csv   # Session-length distribution audit (MANUAL)
-│   ├── hp_search_GRU.csv               # GRU hyperparameter search log
-│   ├── hp_search_LSTM.csv              # LSTM hyperparameter search log
-│   ├── baseline_pred_vs_actual.png     # Predicted vs actual scatter (all 3 models)
-│   ├── delta_mae_heatmap.png           # δMAE heatmap — ablation (season × feature)
-│   ├── mae_by_season.png               # GRU MAE stratified by season
-│   └── feature_importance.png          # Environmental δMAE bar chart
+│   ├── flat_vs_seq_rf_comparison.csv      # Flat RF vs Seq-RF comparison
+│   ├── manual_baseline_results.csv        # MANUAL mode flat RF baseline
+│   ├── prediction_comparison_models.csv   # All models on same 578 test sequences
+│   ├── threshold_comparison.csv           # 1 min vs 2 min exclusion threshold experiment
+│   ├── weather_alignment_audit.csv        # ERA5 merge quality report
+│   ├── session_length_bias_auto.csv       # Session-length distribution audit (AUTO)
+│   ├── session_length_bias_manual.csv     # Session-length distribution audit (MANUAL)
+│   ├── hp_search_GRU.csv                 # GRU hyperparameter search log
+│   ├── hp_search_LSTM.csv                # LSTM hyperparameter search log
+│   ├── baseline_pred_vs_actual.png       # Predicted vs actual scatter (all 3 models)
+│   ├── delta_mae_heatmap.png             # δMAE heatmap — ablation (season × feature)
+│   ├── mae_by_season.png                 # GRU MAE stratified by season
+│   └── feature_importance.png            # Environmental δMAE bar chart
 │
 ├── saved_models/
-│   ├── gru_model.pth                   # Trained GRU weights (PyTorch state_dict)
-│   ├── lstm_model.pth                  # Trained LSTM weights (PyTorch state_dict)
-│   ├── rf_model.pkl                    # Trained Seq-RF (scikit-learn, 500 trees)
-│   ├── x_scaler.pkl                    # Feature StandardScaler (fitted on train only)
-│   ├── y_scaler.pkl                    # Target StandardScaler (fitted on train only)
-│   └── feature_cols.json               # Ordered 12-feature list for inference
+│   ├── gru_model.pth                     # Trained GRU weights (PyTorch state_dict)
+│   ├── lstm_model.pth                    # Trained LSTM weights (PyTorch state_dict)
+│   ├── rf_model.pkl                      # Trained Seq-RF (scikit-learn, 500 trees)
+│   ├── x_scaler.pkl                      # Feature StandardScaler (fitted on train only)
+│   ├── y_scaler.pkl                      # Target StandardScaler (fitted on train only)
+│   └── feature_cols.json                 # Ordered 12-feature list for inference
 │
 ├── notebooks/
-│   └── v9_pipeline.ipynb               # Canonical pipeline notebook (all phases)
+│   └── v9_pipeline.ipynb                 # Canonical pipeline notebook (all phases)
 │
 └── README.md
 ```
