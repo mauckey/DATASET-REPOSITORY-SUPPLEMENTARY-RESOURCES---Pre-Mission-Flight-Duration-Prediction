@@ -66,9 +66,6 @@ A key design principle is **mission-driven stopping**: the T40 lands when its as
 │   ├── y_scaler.pkl                      # Target StandardScaler (fitted on train only)
 │   └── feature_cols.json                 # Ordered 12-feature list for inference
 │
-├── notebooks/
-│   └── v9_pipeline.ipynb                 # Canonical pipeline notebook (all phases)
-│
 └── README.md
 ```
 
