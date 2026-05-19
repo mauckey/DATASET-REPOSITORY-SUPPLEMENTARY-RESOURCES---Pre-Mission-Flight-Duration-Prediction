@@ -1,0 +1,4 @@
+Comparison,W-statistic,p-value,Effect size r,Magnitude,Median Δ|err|,Significant,Lower MAE
+GRU vs LSTM,47502.5,2.19e-19,0.3745,Medium,0.3322,Yes,LSTM
+GRU vs Seq-RF,50723.5,2.38e-16,0.3411,Medium,0.3422,Yes,Seq-RF
+LSTM vs Seq-RF,73230.5,0.0094,0.1081,Small,0.0309,Yes,Seq-RF

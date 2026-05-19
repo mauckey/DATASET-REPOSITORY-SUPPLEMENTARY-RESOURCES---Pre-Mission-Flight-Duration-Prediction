@@ -1,0 +1,62 @@
+
+================================================================
+WILCOXON SIGNED-RANK TEST - RQ1 SUMMARY
+================================================================
+
+Sample size : n = 578 test sequences
+Models      : GRU, LSTM, Seq-RF (sequential models only)
+Comparison  : Pairwise absolute errors on the same test set
+Alpha       : 0.05
+
+Mean Absolute Errors
+--------------------
+  GRU    : 0.9907 min
+  LSTM   : 0.8084 min
+  Seq-RF : 0.8082 min
+
+Pairwise Results
+----------------
+  GRU vs LSTM    : p < 0.001, r = 0.374 (Medium effect)
+                   Median diff (GRU - LSTM)   = +0.332 min
+  GRU vs Seq-RF  : p < 0.001, r = 0.341 (Medium effect)
+                   Median diff (GRU - Seq-RF) = +0.342 min
+  LSTM vs Seq-RF : p = 0.0094, r = 0.108 (Small effect)
+                   Median diff (LSTM - Seq-RF) = +0.031 min
+
+Note: Positive median difference means the first model had LARGER errors.
+
+Interpretation
+--------------
+1. All three pairwise comparisons are statistically significant at
+   alpha = 0.05, indicating that the three sequential models produce
+   meaningfully different error distributions on the same 578 test
+   sequences.
+
+2. GRU produced significantly LARGER absolute errors than both LSTM
+   and Seq-RF, with MEDIUM effect sizes (r = 0.374 and
+   r = 0.341). The median paired difference of approximately
+   +0.33 minutes for both pairs indicates that LSTM and Seq-RF
+   predictions were typically closer to the actual flight duration
+   by roughly 20 seconds per mission.
+
+3. LSTM vs Seq-RF was statistically significant (p = 0.0094) but
+   with only a SMALL effect (r = 0.108) and a near-zero median
+   paired difference (+0.031 min). The two models are
+   practically equivalent in accuracy on this test set.
+
+4. Accuracy ranking (best -> worst): Seq-RF ~ LSTM > GRU
+   GRU's higher error is NOT within sampling noise. Accuracy alone
+   favors LSTM or Seq-RF. The recommendation of GRU for deployment
+   rests on its computational efficiency advantage (~0.6 ms inference
+   vs. ~128 ms for Seq-RF), not on predictive accuracy.
+
+Method Notes (for Chapter 3 / 4)
+--------------------------------
+- The Wilcoxon signed-rank test is appropriate because:
+    (a) the errors are paired (same test sequences across models),
+    (b) it makes no normality assumption on the error distribution,
+    (c) it is well-powered at n = 578.
+- Effect size r was computed via the normal approximation
+  r = |Z| / sqrt(n), following Rosenthal (1991) and Cohen's
+  conventions (small/medium/large = 0.1 / 0.3 / 0.5).
+================================================================
